@@ -1,0 +1,32 @@
+name: build documentation and publish
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - run: pip install -r requirements.txt
+      - name: build documentation
+        run: |
+          cd ./docs
+          pwd
+          sphinx-build -b markdown ./ ./migrated_docs
+      - uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PAT}}
+        with:
+          source-directory: './docs/migrated_docs'
+          destination-github-username: 'avb-is-me'
+          destination-repository-name: 'gptIndexDocsTest'
+          user-email: github-actions[bot]@users.noreply.github.com
+          target-branch: main
+          target-directory: migrated_docs
+  
+
