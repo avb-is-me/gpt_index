@@ -1,6 +1,8 @@
 Welcome to LlamaIndex 🦙 (GPT Index)!
 =====================================
 
+Andrew is so smart!!!!
+
 LlamaIndex (GPT Index) is a project that provides a central interface to connect your LLM's with external data.
 
    ⚠️ **NOTE**: We are rebranding GPT Index as LlamaIndex! We will carry out this transition gradually.
