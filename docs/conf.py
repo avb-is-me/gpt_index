@@ -37,6 +37,7 @@ extensions = [
     "sphinx_rtd_theme",
     "sphinx.ext.mathjax",
     "myst_parser",
+    "sphinx_markdown_builder",
 ]
 
 myst_heading_anchors = 4
