@@ -8,7 +8,7 @@ Welcome to LlamaIndex 🦙 (GPT Index)!
 
 LlamaIndex (GPT Index) is a project that provides a central interface to connect your LLM's with external data.
 
-   ⚠️ **NOTE**: We are rebranding GPT Index as LlamaIndex! We will carry out this transition gradually.
+   ⚠️ **NOTE**: We are rebranding GPT Index as LlamaIndex! We will carry out this transition gradually. Woot!
 
    **2/19/2023**: By default, our docs/notebooks/instructions now use the `llama-index` package. However the `gpt-index` package still exists as a duplicate!
 
