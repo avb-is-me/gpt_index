@@ -7,7 +7,7 @@ LlamaIndex offers multiple integration points with vector stores / vector databa
 
 ## Loading Data from Vector Stores using Data Connector
 
-LlamaIndex supports loading data from the following sources. See [Data Connectors](data_connectors.md) for more details and API documentation.
+LlamaIndex supports loading data from the following sources. See [Data Connectors](/how_to/data_connectors.md) for more details and API documentation.
 
 - Chroma (`ChromaReader`) [Installation](https://docs.trychroma.com/getting-started)
 - Qdrant (`QdrantReader`) [Installation](https://qdrant.tech/documentation/install/) [Python Client](https://qdrant.tech/documentation/install/#python-client)
@@ -69,7 +69,7 @@ These are found in the following classes:
 - `GPTChromaIndex`
 
 
-An API reference of each vector index is [found here](/reference/indices/vector_store.md).
+An API reference of each vector index is [found here](/reference/indices/vector_store.rst).
 
 Similar to any other index within LlamaIndex (tree, keyword table, list), this index can be constructed upon any collection
 of documents. We use the vector store within the index to store embeddings for the input text chunks.
@@ -146,9 +146,16 @@ pinecone.create_index(
 )
 index = pinecone.Index("quickstart")
 
+# can define filters specific to this vector index (so you can
+# reuse pinecone indexes)
+metadata_filters = {"title": "paul_graham_essay"}
+
+
 # Load documents, build the GPTPineconeIndex
 documents = SimpleDirectoryReader('../paul_graham_essay/data').load_data()
-index = GPTPineconeIndex(documents, pinecone_index=index)
+index = GPTPineconeIndex(
+    documents, pinecone_index=index, metadata_filters=metadata_filters
+)
 
 # Query index
 response = index.query("What did the author do growing up?")
@@ -167,7 +174,7 @@ client = qdrant_client.QdrantClient(
 )
 collection_name = "paul_graham"
 
-# Load documents, build the GPTFaissIndex
+# Load documents, build the GPTQdrantIndex
 documents = SimpleDirectoryReader('../paul_graham_essay/data').load_data()
 index = GPTQdrantIndex(documents, collection_name=collection_name, client=client)
 
@@ -186,7 +193,7 @@ from gpt_index import GPTChromaIndex, SimpleDirectoryReader
 chroma_client = chromadb.Client()
 chroma_collection = chroma_client.create_collection("quickstart")
 
-# Load documents, build the GPTFaissIndex
+# Load documents, build the GPTChromaIndex
 documents = SimpleDirectoryReader('../paul_graham_essay/data').load_data()
 index = GPTChromaIndex(documents, chroma_collection=chroma_collection)
 
